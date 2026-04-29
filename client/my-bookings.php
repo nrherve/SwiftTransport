@@ -22,14 +22,11 @@ if (isset($_GET['delete'])) {
     }
 }
 
-// Fetch all bookings
+// Fetch all bookings - Updated logic to remove the JOIN and use direct column names
 $stmt = $pdo->prepare("
-    SELECT b.*, l1.location_name AS pickup, l2.location_name AS dropoff
-    FROM bookings b
-    JOIN locations l1 ON b.pickup_location_id = l1.id
-    JOIN locations l2 ON b.dropoff_location_id = l2.id
-    WHERE b.user_id = ?
-    ORDER BY b.created_at DESC
+    SELECT * FROM bookings 
+    WHERE user_id = ? 
+    ORDER BY created_at DESC
 ");
 $stmt->execute(array($user_id));
 $bookings = $stmt->fetchAll();
@@ -83,8 +80,8 @@ include '../includes/header.php';
                     <td><?php echo $b['id']; ?></td>
                     <td><?php echo htmlspecialchars($b['item_name']); ?></td>
                     <td><?php echo htmlspecialchars($b['quantity_weight']); ?></td>
-                    <td><?php echo htmlspecialchars($b['pickup']); ?></td>
-                    <td><?php echo htmlspecialchars($b['dropoff']); ?></td>
+                    <td><?php echo htmlspecialchars($b['pickup_location_id']); ?></td>
+                    <td><?php echo htmlspecialchars($b['dropoff_location_id']); ?></td>
                     <td><strong><?php echo number_format($b['price']); ?></strong></td>
                     <td><span class="badge <?php echo $cls; ?>"><?php echo ucfirst($b['status']); ?></span></td>
                     <td><?php echo date('d M Y', strtotime($b['created_at'])); ?></td>

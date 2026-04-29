@@ -17,8 +17,8 @@
                 <div class="footer-col">
                     <h4>Contact Us</h4>
                     <a href="#">Nyabugogo, Kigali</a>
-                    <a href="#">+250 788 000 000</a>
-                    <a href="#">info@swifttransport.rw</a>
+                    <a href="#">+250 785147400</a>
+                    <a href="#">jmugabe250@gmail.com</a>
                     <a href="#">Mon – Sat: 7am – 8pm</a>
                 </div>
             </div>
